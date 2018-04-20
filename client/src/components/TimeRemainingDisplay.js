@@ -44,7 +44,7 @@ class TimeRemainingDisplay extends Component {
 
         gradient = tinygradient([
             { color: green[500], pos: 0 },
-            { color: green[500], pos: 0.9 - (config.minutesToTurnRed * 60 / newState.max) },
+            { color: green[500], pos: 0.95 - (config.minutesToTurnRed * 60 / newState.max) },
             { color: red[500], pos: 1 - (config.minutesToTurnRed * 60 / newState.max) },
             { color: red[500], pos: 1 }
         ], )
