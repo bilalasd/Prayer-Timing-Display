@@ -7,6 +7,7 @@ import green from 'material-ui/colors/green'
 import red from 'material-ui/colors/red'
 import momentDurationFormatSetup from 'moment-duration-format'
 import tinygradient from 'tinygradient'
+import config from '../config.js'
 
 momentDurationFormatSetup(moment)
 var gradient = tinygradient([
@@ -40,6 +41,14 @@ class TimeRemainingDisplay extends Component {
                 trim: false
             }),
         }
+
+        gradient = tinygradient([
+            { color: green[500], pos: 0 },
+            { color: green[500], pos: 0.9 - (config.minutesToTurnRed * 60 / newState.max) },
+            { color: red[500], pos: 1 - (config.minutesToTurnRed * 60 / newState.max) },
+            { color: red[500], pos: 1 }
+        ], )
+
         console.log((newState.max - newState.secondsLeftUntilNextPrayer) / newState.max)
         return newState
     }
@@ -50,8 +59,8 @@ class TimeRemainingDisplay extends Component {
                 width: "100%",
                 'marginLeft': "auto",
                 'marginRight': "auto",
-                'margin-top': "100px",
-                'margin-bottom': '100px'
+                'margin-top': "53px",
+                'margin-bottom': '53px'
             }}>
                 <CircularProgressbar
                     percentage={(this.state.secondsLeftUntilNextPrayer / this.state.max) * 100}

@@ -55,8 +55,8 @@ class App extends React.Component {
             </Paper>
           </Grid>
         </Grid>
-        <Grid container spacing={12}>
-          <Grid item xs={5} sm={5} md={5} lg={5}>
+        <Grid container spacing={0}>
+          <Grid item xs={5} sm={5} md={5} lg={5} spa>
             <Paper className={classes.paper}>
               <TimeRemainingDisplay currentTime={this.state.currentTime} />
             </Paper>

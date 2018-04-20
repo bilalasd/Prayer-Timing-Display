@@ -5,17 +5,17 @@ import { List, ListItem, Divider } from 'material-ui';
 export default class PrayerTimesList extends Component {
     render() {
         return (
-            <List>
+            <List dense={true}>
                 <IndividualPrayerListItem prayer="fajr"></IndividualPrayerListItem>
-                <Divider />
+                {/*<Divider />*/}
                 <IndividualPrayerListItem prayer="sunrise"></IndividualPrayerListItem>
-                <Divider />
+                {/*<Divider />*/}
                 <IndividualPrayerListItem prayer="dhuhr"></IndividualPrayerListItem>
-                <Divider />
+                {/*<Divider />*/}
                 <IndividualPrayerListItem prayer="asr"></IndividualPrayerListItem>
-                <Divider />
+                {/*<Divider />*/}
                 <IndividualPrayerListItem prayer="maghrib"></IndividualPrayerListItem>
-                <Divider />
+                {/*<Divider />*/}
                 <IndividualPrayerListItem prayer="isha"></IndividualPrayerListItem>
             </List>
         )

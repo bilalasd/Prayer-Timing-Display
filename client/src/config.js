@@ -22,7 +22,8 @@ var config = {
     'longitude': longitude,
     'coordinates': coordinates,
     'madhab': madhab,
-    'calculationMethod': calculationMethod
+    'calculationMethod': calculationMethod,
+    'minutesToTurnRed': 20,
 }
 console.log(config)
 
