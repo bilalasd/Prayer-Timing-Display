@@ -47,9 +47,11 @@ class TimeRemainingDisplay extends Component {
     render() {
         return (
             <div style={{
-                width: "60%",
+                width: "100%",
                 'marginLeft': "auto",
                 'marginRight': "auto",
+                'margin-top': "100px",
+                'margin-bottom': '100px'
             }}>
                 <CircularProgressbar
                     percentage={(this.state.secondsLeftUntilNextPrayer / this.state.max) * 100}

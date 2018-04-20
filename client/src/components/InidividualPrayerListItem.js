@@ -74,12 +74,12 @@ class IndividualPrayerListItem extends Component {
                 <ListItem style={styles} className={this.state.class}>
                     <Grid container>
                         <Grid item xs={6}>
-                            <Typography variant="display1">
+                            <Typography variant="display4">
                                 {this.getPrayerDisplayName()}
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography variant="display1">
+                            <Typography variant="display4">
                                 {this.state.prayerTimes[this.props.prayer].format('hh:mm a')}
                             </Typography>
                         </Grid>
