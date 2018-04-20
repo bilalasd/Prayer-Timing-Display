@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { CircularProgress } from 'material-ui/Progress'
+import CircularProgressbar from 'react-circular-progressbar'
 import getPrayerTimes from '../api';
 import Typography from 'material-ui/Typography';
 import green from 'material-ui/colors/green'
@@ -11,60 +11,62 @@ import tinygradient from 'tinygradient'
 momentDurationFormatSetup(moment)
 var gradient = tinygradient([
     { color: green[500], pos: 0 },
-    { color: green[500], pos: 0.9 },
+    { color: green[500], pos: 0.7 },
+    { color: red[500], pos: 0.8 },
     { color: red[500], pos: 1 }
 ], )
 
-export default class TimeRemainingDispla extends Component {
+class TimeRemainingDisplay extends Component {
     constructor(props) {
         super(props)
-        this.updateTime = this.updateTime.bind(this)
-        setInterval(this.updateTime, 50)
-        var nextPrayer = getPrayerTimes()['nextPrayer']
-        var currentPrayer = getPrayerTimes()['currentPrayer']
         this.state = {
-            nextPrayer: nextPrayer,
-            max: nextPrayer.diff(currentPrayer, 'seconds'),
-            secondsLeft: moment(this.props.nextPrayer, 'hh:mm a').diff(moment(this.props.currentTime)),
-            timeLeft: 0,
+            nextPrayer: "",
+            max: "",
+            secondsLeftUntilNextPrayer: "",
+            fullTimeLeftUntilNextPrayer: "",
         }
 
     }
 
-    updateTime() {
-        var secondsLeft = (this.state.nextPrayer.diff(moment(this.props.currentTime), 'seconds'))
-        this.setState({
-            secondsLeft: secondsLeft,
-            timeLeft: moment.duration(secondsLeft, 'seconds').format('-h:mm:ss'),
-            color: gradient.rgbAt(1 - (secondsLeft / this.state.max))
-        })
+    static getDerivedStateFromProps(nextProps, prevProps) {
+        var prayerTimes = getPrayerTimes();
+        var nextPrayer = prayerTimes['nextPrayer']
+        var currentPrayer = prayerTimes['currentPrayer']
+        var secondsLeftUntilNextPrayer = moment(nextPrayer, 'hh:mm a').diff(moment(nextProps.currentTime), 'seconds')
+        var newState = {
+            max: nextPrayer.diff(currentPrayer, 'seconds'),
+            secondsLeftUntilNextPrayer: secondsLeftUntilNextPrayer,
+            fullTimeLeftUntilNextPrayer: moment.duration(secondsLeftUntilNextPrayer, 'seconds').format('[-]hh:mm:ss', {
+                trim: false
+            }),
+        }
+        console.log((newState.max - newState.secondsLeftUntilNextPrayer) / newState.max)
+        return newState
     }
 
     render() {
         return (
-            <div>
-                <Typography
-                    variant="display3"
-                    style={{
-                        color: this.state.color,
-                        position: "absolute",
-                        top: '48%',
-                        left: '18%'
-                    }}>
-                    {this.state.timeLeft}
-                </Typography>
-                <CircularProgress
-                    variant="determinate"
-                    size={400}
-                    style={{
-                        color: this.state.color,
-                        zIndex: 1
+            <div style={{
+                width: "60%",
+                'marginLeft': "auto",
+                'marginRight': "auto",
+            }}>
+                <CircularProgressbar
+                    percentage={(this.state.secondsLeftUntilNextPrayer / this.state.max) * 100}
+                    textForPercentage={(percentage) => {
+                        return this.state.fullTimeLeftUntilNextPrayer
                     }}
-                    value={this.state.secondsLeft}
-                    min={0}
-                    max={this.state.max}
+                    styles={{
+                        text: {
+                            fill: gradient.rgbAt((this.state.max - this.state.secondsLeftUntilNextPrayer) / this.state.max),
+                            font: 'roboto',
+                        },
+                        path: { stroke: gradient.rgbAt((this.state.max - this.state.secondsLeftUntilNextPrayer) / this.state.max) }
+                    }}
                 />
             </div>
         )
     }
 }
+
+export default (TimeRemainingDisplay)

@@ -12,7 +12,7 @@ class TimeDisplay extends React.Component {
     render() {
         return (
             <div>
-                <Typography variant="display2">
+                <Typography variant="display4">
                     {moment(this.props.currentTime).format("h:mm:ss a")}
                 </Typography>
                 <Typography variant="display1" gutterBottom>

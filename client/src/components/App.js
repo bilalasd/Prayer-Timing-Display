@@ -8,7 +8,7 @@ import { withStyles } from 'material-ui/styles';
 import moment from 'moment'
 import TimeDisplay from './TimeDisplay'
 import TimeRemainingDisplay from './TimeRemainingDisplay'
-import { List, ListItem, Divider } from 'material-ui';
+// import { List, ListItem, Divider } from 'material-ui';
 import getPrayerTimes from '../api';
 import PrayerTimesList from './PrayerTimesList'
 
@@ -28,7 +28,6 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      prayerTimes: {},
       currentTime: moment().format()
     }
 
@@ -42,7 +41,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var temp = setInterval(this.updateTime, 50)
+    var temp = setInterval(this.updateTime, 500)
   }
 
   render() {
@@ -59,7 +58,7 @@ class App extends React.Component {
         <Grid container spacing={16}>
           <Grid item xs sm md lg>
             <Paper className={classes.paper}>
-              <TimeRemainingDisplay currentTime={this.state.currentTime} nextPrayer={getPrayerTimes()[getPrayerTimes()['nextPrayer']]} />
+              <TimeRemainingDisplay currentTime={this.state.currentTime} />
             </Paper>
           </Grid>
           <Grid item xs sm md lg>
