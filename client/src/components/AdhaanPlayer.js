@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
-// var player = require('play-sound')()
 
 export default class AdhaanPlayer extends Component {
 
@@ -15,13 +14,12 @@ export default class AdhaanPlayer extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        // console.log(prevState)
         var newState = {}
         if (prevState.previousPrayerTimes != undefined) {
             if (prevState.previousPrayerTimes.currentPrayerName != nextProps.prayerTimes.currentPrayerName) {
                 newState = {
                     playStatus: Sound.status.PLAYING,
-                    adhaanFileName: 'azan1.mp3',
+                    adhaanFileName: 'azan' + ((Math.floor(Math.random()) * 21) + 1) + '.mp3',
                     previousPrayerTimes: nextProps.prayerTimes
                 }
             }
