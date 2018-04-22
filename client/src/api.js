@@ -1,14 +1,25 @@
 import adhan from 'adhan'
 import config from './config'
 import moment from 'moment'
+import ntpClient from 'ntp-client'
+import axios from 'axios'
 // var performance = require('perf_hooks')
 
 var params = config.calculationMethod
 params.madhab = config.madhab
 
+var ntpTimeDifference = 0
 
-function getPrayerTimes() {
-    var date = new Date()
+export async function syncTime() {
+
+    var ntpTime = await axios.get('http://localhost:3001/getntptime')
+    ntpTimeDifference = parseInt(moment(ntpTime.data).diff(moment()))
+    console.log("NTP Time Difference:" + parseInt(ntpTimeDifference))
+    return
+}
+
+export function getPrayerTimes() {
+    var date = new Date((new Date()).getTime() + +ntpTimeDifference)
     var timeOffset = (-1) * (date.getTimezoneOffset() / 60)
     var prayerTimes = new adhan.PrayerTimes(config.coordinates, date, params)
     var formattedPrayerTimes = adhan.Date.formattedTime
@@ -80,4 +91,4 @@ function getPrayerTimes() {
 }
 
 
-export default getPrayerTimes
+// export default {getPrayerTimes, syncTime}

@@ -7,7 +7,7 @@ import moment from 'moment'
 import TimeDisplay from './TimeDisplay'
 import TimeRemainingDisplay from './TimeRemainingDisplay'
 // import { List, ListItem, Divider } from 'material-ui';
-import getPrayerTimes from '../api';
+import { getPrayerTimes, syncTime } from '../api';
 import PrayerTimesList from './PrayerTimesList'
 import AdhaanPlayer from './AdhaanPlayer'
 
@@ -21,17 +21,26 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+
+
 });
 
 class App extends React.Component {
   constructor(props) {
     super(props)
+    syncTime()
+    // moment.now = function () {
+    //   var date = new Date();
+    //   date.setMinutes(date.getMinutes() - 36)
+    //   return +date;
+    // }
     this.state = {
       currentTime: moment(),
       prayerTimes: getPrayerTimes()
     }
 
     this.updateTime = this.updateTime.bind(this)
+    console.log("constructor ended")
   }
 
   updateTime() {
