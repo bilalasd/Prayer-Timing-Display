@@ -11,11 +11,11 @@
     "react": "^16.3.1",
     "react-circular-progressbar": "^0.8.0",
     "react-dom": "^16.3.1",
-    "react-progressbar.js": "^0.2.0",
     "react-scripts": "1.1.4",
     "tinygradient": "^0.4.0",
     "typeface-roboto": "0.0.54",
-    "zipcodes": "^6.0.0"
+    "zipcodes": "^6.0.0",
+    "react-sound": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

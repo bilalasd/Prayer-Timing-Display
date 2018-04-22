@@ -11,8 +11,8 @@ var calculationMethod = adhan.CalculationMethod.NorthAmerica()
 
 
 
-var latitude = parseInt(zipcodes.lookup(zipcode).latitude)
-var longitude = parseInt(zipcodes.lookup(zipcode).longitude)
+var latitude = parseInt(zipcodes.lookup(zipcode).latitude, 10)
+var longitude = parseInt(zipcodes.lookup(zipcode).longitude, 10)
 var coordinates = new adhan.Coordinates(latitude, longitude)
 
 

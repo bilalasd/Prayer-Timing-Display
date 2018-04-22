@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import IndividualPrayerListItem from './InidividualPrayerListItem'
-import { List, ListItem, Divider } from 'material-ui';
+import { List } from 'material-ui';
 
 export default class PrayerTimesList extends Component {
     render() {
         return (
             <List dense={true}>
-                <IndividualPrayerListItem prayer="fajr"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="fajr"></IndividualPrayerListItem>
                 {/*<Divider />*/}
-                <IndividualPrayerListItem prayer="sunrise"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="sunrise"></IndividualPrayerListItem>
                 {/*<Divider />*/}
-                <IndividualPrayerListItem prayer="dhuhr"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="dhuhr"></IndividualPrayerListItem>
                 {/*<Divider />*/}
-                <IndividualPrayerListItem prayer="asr"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="asr"></IndividualPrayerListItem>
                 {/*<Divider />*/}
-                <IndividualPrayerListItem prayer="maghrib"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="maghrib"></IndividualPrayerListItem>
                 {/*<Divider />*/}
-                <IndividualPrayerListItem prayer="isha"></IndividualPrayerListItem>
+                <IndividualPrayerListItem prayerTimes={this.props.prayerTimes} prayer="isha"></IndividualPrayerListItem>
             </List>
         )
     }

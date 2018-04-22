@@ -1,6 +1,7 @@
 import adhan from 'adhan'
 import config from './config'
 import moment from 'moment'
+// var performance = require('perf_hooks')
 
 var params = config.calculationMethod
 params.madhab = config.madhab
@@ -13,7 +14,8 @@ function getPrayerTimes() {
     var formattedPrayerTimes = adhan.Date.formattedTime
     var currentTime = moment()
 
-    var fajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
+    var fajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa")
+    var nextFajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
     var sunrise = moment(formattedPrayerTimes(prayerTimes.sunrise, timeOffset), "h:mm aa")
     var dhuhr = moment(formattedPrayerTimes(prayerTimes.dhuhr, timeOffset), "h:mm aa")
     var asr = moment(formattedPrayerTimes(prayerTimes.asr, timeOffset), "h:mm aa")
@@ -64,6 +66,7 @@ function getPrayerTimes() {
 
     return {
         'fajr': fajr,
+        'nextFajr': nextFajr,
         'sunrise': sunrise,
         'dhuhr': dhuhr,
         'asr': asr,

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ListItem } from 'material-ui';
 import { Grid } from 'material-ui';
 import Typography from 'material-ui/Typography';
-import getPrayerTimes from '../api'
+// import getPrayerTimes from '../api'
 import { withStyles } from 'material-ui';
 import blue from 'material-ui/colors/blue';
 // import blue200 from 'material-ui/styles';
@@ -19,16 +19,16 @@ class IndividualPrayerListItem extends Component {
         super(props)
         this.state = {
             class: this.props.classes.inactive,
-            prayerTimes: getPrayerTimes()
+            prayerTimes: ""
         }
-        this.getPrayerTime = this.getPrayerTime.bind(this)
-        setInterval(this.getPrayerTime, 100)
+        // this.getPrayerTime = this.getPrayerTime.bind(this)
+        // setInterval(this.getPrayerTime, 1000)
 
     }
 
-    componentDidMount() {
-        this.getPrayerTime()
-    }
+    // componentDidMount() {
+    //     this.getPrayerTime()
+    // }
 
     getPrayerDisplayName() {
         if (this.props.prayer == 'fajr') {
@@ -51,21 +51,22 @@ class IndividualPrayerListItem extends Component {
         }
     }
 
-    getPrayerTime() {
-        var prayerTimes = getPrayerTimes()
-        if (prayerTimes.currentPrayerName == this.props.prayer) {
-            this.setState({
-                class: this.props.classes.active,
+    static getDerivedStateFromProps(nextProps) {
+        var newState = {}
+        var prayerTimes = nextProps.prayerTimes
+        if (prayerTimes.currentPrayerName == nextProps.prayer) {
+            newState = {
+                class: nextProps.classes.active,
                 prayerTimes: prayerTimes
-            })
+            }
         }
         else {
-            this.setState({
-                class: this.props.classes.inactive,
+            newState = {
+                class: nextProps.classes.inactive,
                 prayerTimes: prayerTimes
-            })
+            }
         }
-        return
+        return newState
     }
 
     render() {
