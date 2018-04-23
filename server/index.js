@@ -9,7 +9,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/getNTPTime', (req, res) => {
-    ntpClient.getNetworkTime("pool.ntp.org", 123, function (err, date) {
+    ntpClient.getNetworkTime("0.us.pool.ntp.org", 123, function (err, date) {
         if (err) {
             console.error(err);
             return;
