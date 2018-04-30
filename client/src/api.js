@@ -26,7 +26,7 @@ export function getPrayerTimes() {
     var currentTime = moment()
 
     var fajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa")
-    var nextFajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
+    // var nextFajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
     var sunrise = moment(formattedPrayerTimes(prayerTimes.sunrise, timeOffset), "h:mm aa")
     var dhuhr = moment(formattedPrayerTimes(prayerTimes.dhuhr, timeOffset), "h:mm aa")
     var asr = moment(formattedPrayerTimes(prayerTimes.asr, timeOffset), "h:mm aa")
@@ -77,7 +77,7 @@ export function getPrayerTimes() {
 
     return {
         'fajr': fajr,
-        'nextFajr': nextFajr,
+        // 'nextFajr': nextFajr,
         'sunrise': sunrise,
         'dhuhr': dhuhr,
         'asr': asr,

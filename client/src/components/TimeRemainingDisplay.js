@@ -31,52 +31,59 @@ class TimeRemainingDisplay extends Component {
     static getSecondsUntilNextPrayer(props) {
         var secondsLeftUntilNextPrayer = 0
 
-        if (props.prayerTimes.currentPrayerName == 'isha') {
+        // if (props.prayerTimes.currentPrayerName == 'isha') {
 
-            //check if the time is after isha and before midnight or after midnight and before fajr
-            if (!props.currentTime.isBefore(props.prayerTimes.fajr)) {
-                //time is after isha but before midnight
-                //to calculate correct secondsLeftUntilNextPrayer we will have to add seconds from currentTime
-                //to midnight and seconds from midnight to the next day's fajr
-                //secondsLeftUntilNextPrayer += moment('23:59:59', 'HH:mm:ss').diff(props.currentTime, 'seconds')
-                //secondsLeftUntilNextPrayer += moment(props.prayerTimes.nextFajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
-                secondsLeftUntilNextPrayer += props.prayerTimes.nextFajr.diff(props.currentTime, 'seconds')
-            }
-            else {
-                //time is after midnight but before fajr
-                secondsLeftUntilNextPrayer = props.prayerTimes.fajr.diff(props.currentTime, 'seconds')
-            }
-        }
-        else {
-            secondsLeftUntilNextPrayer = props.prayerTimes.nextPrayer.diff(props.currentTime, 'seconds')
-        }
+        //     //check if the time is after isha and before midnight or after midnight and before fajr
+        //     if (!props.currentTime.isBefore(props.prayerTimes.fajr)) {
+        //         //time is after isha but before midnight
+        //         //to calculate correct secondsLeftUntilNextPrayer we will have to add seconds from currentTime
+        //         //to midnight and seconds from midnight to the next day's fajr
+        //         //secondsLeftUntilNextPrayer += moment('23:59:59', 'HH:mm:ss').diff(props.currentTime, 'seconds')
+        //         //secondsLeftUntilNextPrayer += moment(props.prayerTimes.nextFajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
+        //         secondsLeftUntilNextPrayer += props.prayerTimes.nextFajr.diff(props.currentTime, 'seconds')
+        //     }
+        //     else {
+        //         //time is after midnight but before fajr
+        //         secondsLeftUntilNextPrayer = props.prayerTimes.fajr.diff(props.currentTime, 'seconds')
+        //     }
+        // }
+        // else {
+        //     secondsLeftUntilNextPrayer = props.prayerTimes.nextPrayer.diff(props.currentTime, 'seconds')
+        // }
+
+        secondsLeftUntilNextPrayer = props.prayerTimes.nextPrayer.diff(props.currentTime, 'seconds')
+        secondsLeftUntilNextPrayer = secondsLeftUntilNextPrayer < 0 ? (secondsLeftUntilNextPrayer + 86400) : secondsLeftUntilNextPrayer
         return secondsLeftUntilNextPrayer
     }
 
     static getSecondsFromCurrentPrayerToNext(props) {
         var secondsFromCurrentPrayerToNext = 0
 
-        if (props.prayerTimes.currentPrayerName == 'isha') {
+        // if (props.prayerTimes.currentPrayerName == 'isha') {
 
-            //check if the time is after isha and before midnight or after midnight and before fajr
-            if (!props.currentTime.isBefore(props.prayerTimes['fajr'])) {
-                //time is after isha but before midnight
-                //to calculate correct secondsFromCurrentPrayerToNext we will have to add seconds from currentPrayer
-                //to midnight and seconds from midnight to the next day's fajr
-                //secondsFromCurrentPrayerToNext += moment('23:59:59', 'HH:mm:ss').diff(props.prayerTimes.currentPrayer, 'seconds')
-                //secondsFromCurrentPrayerToNext += moment(props.prayerTimes.nextFajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
-                secondsFromCurrentPrayerToNext += props.prayerTimes.nextFajr.diff(props.prayerTimes.currentPrayer, 'seconds')
-            }
-            else {
-                //time is after midnight but before fajr
-                // secondsFromCurrentPrayerToNext += moment('23:59:59', 'HH:mm:ss').diff(props.prayerTimes.currentPrayer, 'seconds')
-                // secondsFromCurrentPrayerToNext += moment(props.prayerTimes.fajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
-                secondsFromCurrentPrayerToNext += props.prayerTimes.fajr.diff(props.prayerTimes.currentPrayer, 'seconds')
-            }
-        }
-        else {
-            secondsFromCurrentPrayerToNext = props.prayerTimes.nextPrayer.diff(props.prayerTimes.currentPrayer, 'seconds')
-        }
+        //     //check if the time is after isha and before midnight or after midnight and before fajr
+        //     if (!props.currentTime.isBefore(props.prayerTimes['fajr'])) {
+        //         //time is after isha but before midnight
+        //         //to calculate correct secondsFromCurrentPrayerToNext we will have to add seconds from currentPrayer
+        //         //to midnight and seconds from midnight to the next day's fajr
+        //         //secondsFromCurrentPrayerToNext += moment('23:59:59', 'HH:mm:ss').diff(props.prayerTimes.currentPrayer, 'seconds')
+        //         //secondsFromCurrentPrayerToNext += moment(props.prayerTimes.nextFajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
+        //         secondsFromCurrentPrayerToNext += props.prayerTimes.nextFajr.diff(props.prayerTimes.currentPrayer, 'seconds')
+        //     }
+        //     else {
+        //         //time is after midnight but before fajr
+        //         // secondsFromCurrentPrayerToNext += moment('23:59:59', 'HH:mm:ss').diff(props.prayerTimes.currentPrayer, 'seconds')
+        //         // secondsFromCurrentPrayerToNext += moment(props.prayerTimes.fajr).diff(moment('00:00:00', 'HH:mm:ss'), 'seconds')
+        //         secondsFromCurrentPrayerToNext += props.prayerTimes.fajr.diff(props.prayerTimes.currentPrayer, 'seconds')
+        //     }
+        // }
+        // else {
+        //     secondsFromCurrentPrayerToNext = props.prayerTimes.nextPrayer.diff(props.prayerTimes.currentPrayer, 'seconds')
+        // }
+
+        secondsFromCurrentPrayerToNext = props.prayerTimes.nextPrayer.diff(props.prayerTimes.currentPrayer, 'seconds')
+        secondsFromCurrentPrayerToNext = secondsFromCurrentPrayerToNext < 0 ? (secondsFromCurrentPrayerToNext + 86400) : secondsFromCurrentPrayerToNext
+
         return secondsFromCurrentPrayerToNext
     }
 
