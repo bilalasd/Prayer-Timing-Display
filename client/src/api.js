@@ -26,11 +26,24 @@ export function getPrayerTimes() {
     var currentTime = moment()
 
     var fajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa")
+    if (config.fajrOffset > 0) {
+        fajr.add(config.fajrOffset, 'minutes')
+    }
+    else {
+        fajr.subtract(config.fajrOffset, 'minutes')
+    }
+
     // var nextFajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
     var sunrise = moment(formattedPrayerTimes(prayerTimes.sunrise, timeOffset), "h:mm aa")
     var dhuhr = moment(formattedPrayerTimes(prayerTimes.dhuhr, timeOffset), "h:mm aa")
     var asr = moment(formattedPrayerTimes(prayerTimes.asr, timeOffset), "h:mm aa")
     var maghrib = moment(formattedPrayerTimes(prayerTimes.maghrib, timeOffset), "h:mm aa")
+    if (config.fajrOffset > 0) {
+        maghrib.add(config.maghribOffset, 'minutes')
+    }
+    else {
+        maghrib.subtract(config.maghribOffset, 'minutes')
+    }
     var isha = moment(formattedPrayerTimes(prayerTimes.isha, timeOffset), "h:mm aa")
 
     // console.log(moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset)).format())
