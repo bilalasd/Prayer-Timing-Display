@@ -6,9 +6,10 @@ import adhan from 'adhan'
 var zipcode = 77031
 var madhab = adhan.Madhab.Hanafi
 var calculationMethod = adhan.CalculationMethod.NorthAmerica()
-var maghribOffset = 5; //minutes
-var fajrOffset = -3; //minutes
+var maghribOffset = 4; //minutes
+var fajrOffset = -1; //minutes
 //-----------------------
+
 
 
 
@@ -26,6 +27,8 @@ var config = {
     'madhab': madhab,
     'calculationMethod': calculationMethod,
     'minutesToTurnRed': 20,
+    'maghribOffset': maghribOffset, //minutes
+    'fajrOffset': fajrOffset //minutes
 }
 console.log(config)
 

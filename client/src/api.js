@@ -26,12 +26,17 @@ export function getPrayerTimes() {
     var currentTime = moment()
 
     var fajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa")
+    console.log("fajr before offset:" + fajr.format())
+    console.log("Fajr Offset " + config.fajrOffset)
+
     if (config.fajrOffset > 0) {
-        fajr.add(config.fajrOffset, 'minutes')
+        fajr = fajr.add(config.fajrOffset, 'minutes')
+        
     }
     else {
-        fajr.subtract(config.fajrOffset, 'minutes')
+        fajr = fajr.subtract(config.fajrOffset * -1, 'minutes')
     }
+    console.log("fajr after offset:" + fajr.format())
 
     // var nextFajr = moment(formattedPrayerTimes(prayerTimes.fajr, timeOffset), "h:mm aa").add(1, 'days')
     var sunrise = moment(formattedPrayerTimes(prayerTimes.sunrise, timeOffset), "h:mm aa")
@@ -42,7 +47,7 @@ export function getPrayerTimes() {
         maghrib.add(config.maghribOffset, 'minutes')
     }
     else {
-        maghrib.subtract(config.maghribOffset, 'minutes')
+        maghrib.subtract(config.maghribOffset * -1, 'minutes')
     }
     var isha = moment(formattedPrayerTimes(prayerTimes.isha, timeOffset), "h:mm aa")
 
